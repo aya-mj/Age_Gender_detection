@@ -19,7 +19,6 @@ def faceBox(faceNet,frame):
             cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),1)
     return frame, bbox
 
-genderList1 = ['Female', 'Female']
 faceProto = "opencv_face_detector.pbtxt"
 faceModel = "opencv_face_detector_uint8.pb"
 
@@ -51,7 +50,7 @@ while True:
         blob = cv2.dnn.blobFromImage(face, 1.0, (227,227), MODEL_MEAN_VALUES, swapRB=False)
         genderNet.setInput(blob)
         genderPred = genderNet.forward()
-        gender = genderList1[genderPred[0].argmax()]
+        gender = genderList[genderPred[0].argmax()]
 
         ageNet.setInput(blob)
         agePred = ageNet.forward()
